@@ -2,17 +2,7 @@
 
 ini_set('memory_limit', -1);
 
-function heap() {
-    // PHP_OS_FAMILY === 'Linux'
-    $status = 'grep "VMRSS:" /proc/%s/status';
-
-    if (PHP_OS_FAMILY === 'Windows') {
-        $status = 'tasklist /FI "PID eq %s"';
-    }
-
-    return shell_exec(sprintf($status, getmypid()));
-}
-
+include __DIR__ . '/heap.php';
 
 echo heap();
 
