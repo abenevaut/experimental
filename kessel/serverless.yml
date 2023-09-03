@@ -1,0 +1,24 @@
+service: qr-function
+
+provider:
+    name: aws
+    runtime: provided.al2
+    # The AWS region in which to deploy (us-east-1 is the default)
+    region: eu-west-3
+    # Environment variables
+    environment:
+      APP_ENV: production
+
+plugins:
+    - ./vendor/bref/bref
+
+functions:
+    qr:
+        handler: index.php
+        description: 'QRCode Generator'
+        runtime: php-81
+
+# Exclude files from deployment
+package:
+    patterns:
+        - '!tests/**'
