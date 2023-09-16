@@ -42,8 +42,9 @@ $app = require_once __DIR__.'/bootstrap/app.php';
 
 $kernel = $app->make(Falcon\Framework\Contracts\LambdaFunction\Kernel::class);
 
+$argv = $_SERVER['argv'];
 $status = $kernel->handle(
-    $input = new \Falcon\Framework\ArgvInput()
+    $input = json_decode(array_pop($argv))
 );
 
 /*

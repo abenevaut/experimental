@@ -1,4 +1,4 @@
-service: qr-function
+service: default
 
 provider:
     name: aws
@@ -13,9 +13,9 @@ plugins:
     - ./vendor/bref/bref
 
 functions:
-    qr:
+    default:
         handler: index.php
-        description: 'QRCode Generator'
+        description: 'default function'
         runtime: php-81
 
 # Exclude files from deployment

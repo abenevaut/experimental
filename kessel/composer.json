@@ -1,13 +1,13 @@
 {
-    "name": "abenevaut/laravel-lambda",
-    "description": "The Laravel Zero Framework.",
-    "keywords": ["framework", "laravel", "laravel zero", "console", "cli"],
-    "homepage": "https://laravel-zero.com",
+    "name": "abenevaut/kessel",
+    "description": "The Laravel Kessel Framework.",
+    "keywords": ["framework", "laravel", "kessel"],
+    "homepage": "https://kessel.abenevaut.dev",
     "type": "project",
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/laravel-zero/laravel-zero/issues",
-        "source": "https://github.com/laravel-zero/laravel-zero"
+        "issues": "https://github.com/abenevaut/kessel/issues",
+        "source": "https://github.com/abenevaut/kessel"
     },
     "authors": [
         {
@@ -18,12 +18,12 @@
     "repositories": [
         {
             "type": "path",
-            "url": "../lambda-framework"
+            "url": "../falcon"
         }
     ],
     "require": {
         "php": "^8.1",
-        "abenevaut/lambda-framework": "dev-feat/lambda-qr"
+        "abenevaut/falcon": "dev-feat/kessel-lambda-laravel-function"
     },
     "require-dev": {
         "bref/bref": "^2.1",

@@ -2,12 +2,7 @@
 
 namespace App;
 
-use Falcon\Framework\ArgvInput;
-
-function handle(ArgvInput $input)
+function handle($input)
 {
-
-    return serialize($input);
-
     return json_encode($input);
 }
