@@ -14,10 +14,10 @@ declare(strict_types=1);
 namespace Falcon\Framework;
 
 use Bref\Context\Context;
-use function App\handle as callFunction;
-use Falcon\Framework\Contracts\LambdaFunction\Kernel as FalconKernel;
+use Falcon\Framework\Contracts\LambdaFunctionKernel as FalconKernel;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Throwable;
+use function App\handle as callFunction;
 
 class Kernel implements FalconKernel
 {

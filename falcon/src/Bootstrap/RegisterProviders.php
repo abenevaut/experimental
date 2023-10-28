@@ -2,23 +2,15 @@
 
 declare(strict_types=1);
 
-/**
- * This file is part of Laravel Zero.
- *
- * (c) Nuno Maduro <enunomaduro@gmail.com>
- *
- *  For the full copyright and license information, please view the LICENSE
- *  file that was distributed with this source code.
- */
-
 namespace Falcon\Framework\Bootstrap;
 
-use function collect;
 use Illuminate\Foundation\Bootstrap\RegisterProviders as BaseRegisterProviders;
 use Falcon\Framework\Application;
 use Falcon\Framework\Contracts\BoostrapperContract;
 use Falcon\Framework\Providers;
 use Falcon\Framework\Providers\NullLogger\NullLoggerServiceProvider;
+use LaravelZero\Framework\Providers\Composer\ComposerServiceProvider;
+use function collect;
 
 /**
  * @internal
@@ -34,7 +26,7 @@ final class RegisterProviders implements BoostrapperContract
         NullLoggerServiceProvider::class,
         Providers\Cache\CacheServiceProvider::class,
         Providers\Filesystem\FilesystemServiceProvider::class,
-        Providers\Composer\ComposerServiceProvider::class,
+        ComposerServiceProvider::class,
     ];
 
     /**

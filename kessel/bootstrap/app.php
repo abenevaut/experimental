@@ -27,7 +27,7 @@ $app = new Falcon\Framework\Application(
 */
 
 $app->singleton(
-    Falcon\Framework\Contracts\LambdaFunction\Kernel::class,
+    \Falcon\Framework\Contracts\LambdaFunctionKernel::class,
     Falcon\Framework\Kernel::class
 );
 

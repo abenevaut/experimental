@@ -1,13 +1,11 @@
 <?php
 
-namespace Falcon\Framework\Contracts\LambdaFunction;
-
-use Falcon\Framework\Contracts\ArgvInput;
+namespace Falcon\Framework\Contracts;
 
 /**
  * @todo: This file should be move to another place
  */
-interface Kernel
+interface LambdaFunctionKernel
 {
     /**
      * Bootstrap the application for lambda function.

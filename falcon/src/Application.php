@@ -19,7 +19,7 @@ use Illuminate\Foundation\Application as BaseApplication;
 use Illuminate\Foundation\PackageManifest;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Falcon\Framework\Exceptions\ConsoleException;
+use LaravelZero\Framework\Exceptions\ConsoleException;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 
 class Application extends BaseApplication

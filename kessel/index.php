@@ -40,7 +40,7 @@ $app = require_once __DIR__.'/bootstrap/app.php';
 |
 */
 
-$kernel = $app->make(Falcon\Framework\Contracts\LambdaFunction\Kernel::class);
+$kernel = $app->make(\Falcon\Framework\Contracts\LambdaFunctionKernel::class);
 
 $argv = $_SERVER['argv'];
 $status = $kernel->handle(
