@@ -1,7 +1,7 @@
 ## Code of conduct
 
-- [Visit the Code of conduct](https://github.com/abenevaut/opensource/blob/master/.github/CODE_OF_CONDUCT.md)
-- [Visit the Contributing guidelines](https://github.com/abenevaut/opensource/blob/master/.github/CONTRIBUTING.md)
+- [Visit the Code of conduct](https://github.com/abenevaut/experimental/blob/master/.github/CODE_OF_CONDUCT.md)
+- [Visit the Contributing guidelines](https://github.com/abenevaut/experimental/blob/master/.github/CONTRIBUTING.md)
 
 ## Development principle
 
@@ -36,8 +36,11 @@ nvm use
 
 ## Projects
 
-- [docs](/abenevaut/opensource/wiki/docs)
-- [phpunit-slicer](/abenevaut/opensource/wiki/phpunit-slicer)
+- [docs](/abenevaut/experimental/wiki/docs)
+- [laravel-asana](/abenevaut/experimental/wiki/laravel-asana)
+- [laravel-ohdear](/abenevaut/experimental/wiki/laravel-ohdear)
+- [laravel-paypal](/abenevaut/experimental/wiki/laravel-paypal)
+- [laravel-stripe](/abenevaut/experimental/wiki/laravel-stripe)
 
 ## PHP & Tools supported versions
 
