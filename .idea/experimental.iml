@@ -14,6 +14,8 @@
       <sourceFolder url="file://$MODULE_DIR$/laravel-ohdear/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-ohdear/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/src" isTestSource="false" packagePrefix="abenevaut\Paypal\" />
+      <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-stripe/src" isTestSource="false" packagePrefix="abenevaut\Stripe\" />
