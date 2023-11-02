@@ -1,4 +1,4 @@
-- host: https://github.com/abenevaut/opensource/wiki
+- host: https://github.com/abenevaut/experimental/wiki
 
 ## Project
 
