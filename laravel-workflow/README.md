@@ -1,3 +1,5 @@
+https://laravel-workflow.com/docs/introduction
+
 composer create-project laravel/laravel laravel-workflow
 composer require laravel-workflow/laravel-workflow
 php artisan vendor:publish --provider="Workflow\Providers\WorkflowServiceProvider" --tag="migrations"
