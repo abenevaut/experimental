@@ -670,4 +670,7 @@
       <PhpUnitSettings configuration_file_path="$PROJECT_DIR$/laravel-paypal/phpunit.xml" custom_loader_path="$PROJECT_DIR$/laravel-paypal/vendor/autoload.php" use_configuration_file="true" />
     </phpunit_settings>
   </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
 </project>
