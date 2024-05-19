@@ -5,13 +5,17 @@
       <sourceFolder url="file://$MODULE_DIR$/demo-laravel-stripe/app" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/demo-laravel-stripe/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
       <sourceFolder url="file://$MODULE_DIR$/demo-laravel-stripe/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-stripe/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/demo-laravel-stripe/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-asana/src" isTestSource="false" packagePrefix="abenevaut\Asana\" />
-      <sourceFolder url="file://$MODULE_DIR$/laravel-asana/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-asana/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/laravel-asana/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-ohdear/src" isTestSource="false" packagePrefix="abenevaut\Ohdear\" />
+      <sourceFolder url="file://$MODULE_DIR$/laravel-ohdear/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-ohdear/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/src" isTestSource="false" packagePrefix="abenevaut\Paypal\" />
+      <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/demo-laravel-stripe/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/demo-laravel-stripe/tests/Unit" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-roadrunner/app" isTestSource="false" packagePrefix="App\" />
@@ -20,8 +24,10 @@
       <sourceFolder url="file://$MODULE_DIR$/laravel-roadrunner/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-roadrunner/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-roadrunner/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-stripe/src" isTestSource="false" packagePrefix="abenevaut\Stripe\" />
+      <sourceFolder url="file://$MODULE_DIR$/laravel-stripe/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-stripe/tests" isTestSource="true" packagePrefix="Tests\" />
       <excludeFolder url="file://$MODULE_DIR$/demo-laravel-stripe/vendor/abenevaut/laravel-stripe" />
       <excludeFolder url="file://$MODULE_DIR$/demo-laravel-stripe/vendor/brick/math" />
