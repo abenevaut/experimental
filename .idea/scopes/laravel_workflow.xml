@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="laravel-workflow" pattern="file[experimental]:laravel-workflow//*" />
+</component>
