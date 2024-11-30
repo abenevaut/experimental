@@ -1,0 +1,19 @@
+[package]
+name = "ext-php-hello-world"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+cargo-php = "0.1.9"
+
+[target.aarch64-apple-darwin]
+rustflags = [ "-C", "link-arg=-undefined", "-C", "link-arg=dynamic_lookup", ]
+
+[target.'cfg(not(target_os = "windows"))']
+rustflags = ["-C", "link-arg=-Wl,-undefined,dynamic_lookup"]
+
+[target.x86_64-pc-windows-msvc]
+linker = "rust-lld"
+
+[target.i686-pc-windows-msvc]
+linker = "rust-lld"
