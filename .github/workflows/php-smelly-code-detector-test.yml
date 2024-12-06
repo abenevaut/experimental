@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Generate static pages
-        uses: abenevaut/php-smelly-code-detector@githubaction
+        uses: abenevaut/php-smelly-code-detector@feat/githubaction
         with:
           path: ${{ github.workspace }}/laravel-asana/src
           php-version: ${{ env.php_version }}
