@@ -1,0 +1,52 @@
+name: release
+
+on:
+  push:
+    tags:
+      - docker-*
+
+jobs:
+
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [windows-2022, windows-2019]
+        include:
+          - os: windows-2019
+            windows_version: 10
+            servercore_tag: ltsc2019
+          - os: windows-2022
+            windows_version: 11
+            servercore_tag: ltsc2022
+            latest: true
+    concurrency:
+      group: release-${{ matrix.servercore_tag }}
+      cancel-in-progress: false
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Get current release tag
+        id: branch-name
+        run: |
+          $tag = $env:GITHUB_REF -replace "refs/tags/docker-", ""
+          echo "SOURCE_TAG=$tag" >> $env:GITHUB_OUTPUT
+        shell: pwsh
+
+      - name: Login to Docker
+        run: docker login -u ${{ secrets.ABENEVAUT_DOCKER_USERNAME }} -p ${{ secrets.ABENEVAUT_DOCKER_PASSWORD }}
+
+      - name: Build docker image abenevaut/msys2
+        run: |
+          docker pull --quiet abenevaut/msys2:latest-w${{ matrix.windows_version }}
+          docker build . --build-arg SERVERCORE_TAG=${{ matrix.servercore_tag }} --tag abenevaut/msys2:${{ steps.branch-name.outputs.SOURCE_TAG }}-w${{ matrix.windows_version }} --cache-from abenevaut/msys2:latest-w${{ matrix.windows_version }}
+          docker tag abenevaut/msys2:${{ steps.branch-name.outputs.SOURCE_TAG }}-w${{ matrix.windows_version }} abenevaut/msys2:latest-w${{ matrix.windows_version }}
+
+      - name: Tag latest
+        if: ${{ matrix.latest }}
+        run: docker tag abenevaut/msys2:latest-w${{ matrix.windows_version }} abenevaut/msys2:latest
+
+      - name: Publish images
+        run: docker push --all-tags abenevaut/msys2
