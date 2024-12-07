@@ -3,10 +3,6 @@ name: php-smelly-code-detector-test
 on:
   workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: ./laravel-asana
-
 env:
   php_version: 8.3
 
