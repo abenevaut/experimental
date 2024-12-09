@@ -31,7 +31,9 @@ class DispatchJobs extends Command
     {
 
 
-        SqsStandardJob::dispatch()->onQueue(env('SQS_QUEUE'));
+        SqsStandardJob::dispatch()
+            ->onConnection('sqs')
+            ->onQueue(env('SQS_QUEUE'));
 
 
         SqsFifoJob::dispatch()
