@@ -29,15 +29,14 @@ class DispatchJobs extends Command
      */
     public function handle()
     {
+
+
         SqsStandardJob::dispatch()->onQueue(env('SQS_QUEUE'));
 
 
         SqsFifoJob::dispatch()
             ->onConnection('sqs-fifo')
             ->onQueue(env('SQS_QUEUE_FIFO'));
-
-
-
 
 
         return Command::SUCCESS;
