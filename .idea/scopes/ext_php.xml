@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="ext-php" pattern="file[experimental]:ext-php-hello-world//*||file[experimental]:ext-php-collection//*" />
+</component>

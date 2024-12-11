@@ -1,0 +1,24 @@
+name: php-smelly-code-detector-test
+
+on:
+  workflow_dispatch:
+
+env:
+  php_version: 8.3
+
+jobs:
+
+  publish-pages:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout project
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Inspect code
+        uses: abenevaut/php-smelly-code-detector@feat/githubaction
+        with:
+          path: ${{ github.workspace }}/laravel-asana/src
+          php-version: ${{ env.php_version }}
