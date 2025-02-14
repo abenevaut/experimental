@@ -1,0 +1,14 @@
+services:
+  abtest_xaftemplategallery.blazor.server:
+    image: ${DOCKER_REGISTRY-}abtestxaftemplategalleryblazorserver
+    build:
+      context: .
+      dockerfile: abtest_XAFTemplateGallery.Blazor.Server/Dockerfile
+
+  db:
+    image: mcr.microsoft.com/azure-sql-edge
+    environment:
+      MSSQL_SA_PASSWORD: yourStrong(!)Password
+      ACCEPT_EULA: 1
+    ports:
+      - 1434:1433
