@@ -1,0 +1,9 @@
+﻿// https://github.com/GlovePIEPreservation/GlovePIE/releases/tag/Release
+
+mouse.x = mouse.x + wiimote.Right
+mouse.x*-1 = mouse.x + wiimote.left
+mouse.y = mouse.y + wiimote.up
+mouse.y*-1 = mouse.y + wiimote.Down
+
+mouse.leftbutton = wiimote.A
+mouse.rightbutton = wiimote.B

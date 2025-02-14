@@ -1,0 +1,232 @@
+﻿/*
+
+1 Download the latest version of GlovePIE from https://github.com/Ravbug/GlovePIE
+2 Download the script you want, and open it up in GlovePIE.
+3 Make sure you are using a "non-TR" Wii Remote (RVL-CNT-01), otherwise your Windows Bluetooth won't be able to read its inputs.
+4 Press 'Run' in GlovePIE with the script open.
+5 Either press the 'sync' button at the back of the Wiimote, or press the 1 and 2 buttons at the same time to trigger a Bluetooth sync.
+6 Wait for Windows to finish configuring and syncing the Wiimote (there should be two notification pop-ups). You should see a single blue light on the Wiimote.
+7 Press 'Stop' in GlovePIE. You should observe the blue light on the Wiimote turn off.
+8 Press 'Run' once again in GlovePIE. It takes about 5 seconds for the Wiimote (and nunchuk) to fully calibrate every time the script is run. Make sure you do not move the Wiimote during this time.
+
+
+  Leave the Wiimote on your desk before clicking Run
+     so it can calibrate (orientation does not matter,
+     as long as you do not move it.)
+
+  Wiimote 1/-/B/Home  = Move mouse (Hold button)
+  Wiimote 2           = Modifier (Hold button)
+  Nunchuk Z           = Left Click
+  Nunchuk Z (Mod)     = F
+  Wiimote B           = Right Click
+  Wiimote B (Mod)     = G
+  Nunchuk C           = Middle Click
+  Nunchuk C (Mod)     = Escape
+*/
+Nunchuk.Calibrated = false
+var.Sensitivity      = 1   // Default is 1
+var.JoystickDeadzone = 0.2 // Default is 0.2
+var.DiagnlPercentage = 0.415 // 0.415 is about 22.5 degrees
+var.WalkSprintZone   = 1.32 // Default walk is 1.02; 1.32 for sprint.
+var.PanTiltPercent   = 0.0 // 10% is 0.1; 0.0 is Hori, 1.0 is Vert.
+var.VertSlowdownAtSpeed = 200 // Default is 200.
+    //Lower means more slowdown at lower horizontal speeds
+PIE.FrameRate = 120hz
+
+/* Key and Mouse bindings: */
+var.Modifier         = Wiimote.Two
+var.LookButton       = Wiimote.Minus or Wiimote.B or Wiimote.One or Wiimote.Home // or Wiimote.Plus or Wiimote.Up or Wiimote.Down or Wiimote.Left or Wiimote.Right or Wiimote.Two
+Keyboard.W           = var.NunchukUp
+Keyboard.A           = var.NunchukLeft
+Keyboard.S           = var.NunchukDown
+Keyboard.D           = var.NunchukRight
+Keyboard.Tab         = var.NunchukUpMod
+Keyboard.Q           = var.NunchukLeftMod
+Keyboard.M           = var.NunchukDownMod
+Keyboard.E           = var.NunchukRightMod
+Keyboard.LeftShift   = var.Sprint   // var.Walk
+Mouse.LeftButton     = var.NunchukZ
+Mouse.MiddleButton   = var.NunchukC
+Mouse.RightButton    = var.WiimoteB
+Keyboard.F           = var.NunchukZMod
+Keyboard.Escape      = var.NunchukCMod
+Keyboard.G           = var.WiimoteBMod
+Keyboard.C           = Wiimote.Home
+Keyboard.Space       = Wiimote.A
+Keyboard.R           = Wiimote.Plus
+Keyboard.LeftControl = Wiimote.One
+Mouse.WheelUp        = Wiimote.Up
+Keyboard.Left        = Wiimote.Left
+Mouse.WheelDown      = Wiimote.Down
+Keyboard.Right       = Wiimote.Right
+
+/* Modifiables: */
+if (var.Modifier = false) {
+   var.NunchukRight     = var.Rt
+   var.NunchukRightMod  = false
+   var.NunchukLeft      = var.Lt
+   var.NunchukLeftMod   = false
+   var.NunchukDown      = var.Bkwd
+   var.NunchukDownMod    = false
+   var.NunchukUp        = var.Fwd
+   var.NunchukUpMod     = false
+   var.NunchukZ         = Nunchuk.Z
+   var.NunchukZMod      = false
+   var.NunchukC         = Nunchuk.C
+   var.NunchukCMod      = false
+   var.WiimoteB         = Wiimote.B
+   var.WiimoteBMod      = false
+} else {
+   var.NunchukRight     = false
+   var.NunchukRightMod  = var.Rt
+   var.NunchukLeft      = false
+   var.NunchukLeftMod   = var.Lt
+   var.NunchukDown      = false
+   var.NunchukDownMod    = var.Bkwd
+   var.NunchukUp        = false
+   var.NunchukUpMod     = var.Fwd
+   var.NunchukZ         = false
+   var.NunchukZMod      = Nunchuk.Z
+   var.NunchukC         = false
+   var.NunchukCMod      = Nunchuk.C
+   var.WiimoteB         = false
+   var.WiimoteBMod      = Wiimote.B
+}
+/*
+Credit: NanoPi's joymouse.PIE
+        https://gist.github.com/NanoPi/315d6276c65291e0dfa2
+GlovePIE specific: it is actually extremely important to set X and Y
+positions in a SINGLE assignment command or line of code
+
+good:
+mouse.CursorPos = [var.mx,var.my]
+good:
+[mouse.CursorPosX,mouse.CursorPosY] = [var.mx,var.my]
+bad:
+mouse.CursorPosX = var.mx
+mouse.CursorPosY = var.my
+
+Q: why is it bad?
+A: you will get a stair effect when moving diagonally
+*/
+if wiimote.HasMotionPlus = false then debug = "WiiMotion Plus NOT DETECTED!"
+if wiimote.HasMotionPlus = true and var.LookButton = true {
+   [var.SpeedX, var.SpeedY] = [Smooth(Wiimote.MotionPlus.RawYawSpeed, 2), -1 * Smooth(Wiimote.MotionPlus.RawPitchSpeed, 2)]
+   // DebugPrint('var.SpeedX: ' + var.SpeedX) // typically -600 to 600.
+   // The higher SpeedX is, the lower the SpecialScalar is
+   //   so the faster the hori movement, the less the vert sensitivity is.
+   var.SpecialScalar = var.VertSlowdownAtSpeed/(var.VertSlowdownAtSpeed+Abs(var.SpeedX))
+   Mouse.DirectInput2D = [var.MouseX, var.MouseY]
+   [var.MouseX, var.MouseY] = [var.MouseX, var.MouseY] + [var.SpeedX * 0.5 * var.Sensitivity, (var.SpeedY * 0.5 * var.Sensitivity * var.SpecialScalar) - (var.SpeedX * var.PanTiltPercent)]
+}
+
+if var.LookButton = false {
+   [var.MouseX, var.MouseY] = [Mouse.DirectInputX, Mouse.DirectInputY]
+   var.WiimoteSwingRight = Wiimote.SwingRight
+   var.WiimoteSwingLeft  = Wiimote.SwingLeft
+} else {
+   var.WiimoteSwingRight = false
+   var.WiimoteSwingLeft  = false
+}
+
+/*
+if (Wiimote.SmoothPitch > 65) {
+   //DebugPrint('Wiimote.SmoothPitch: ' + Wiimote.SmoothPitch)
+   var.WiimotePitchUp = true
+} else {
+   var.WiimotePitchUp = false
+}
+
+if (Nunchuk.SmoothRoll < -65) {
+   //DebugPrint('Nunchuk Roll left: ' + Nunchuk.SmoothRoll)
+   var.NunchukRollLeft = true
+} else {
+   var.NunchukRollLeft = false
+}
+
+if (Nunchuk.SmoothRoll > 65) {
+   //DebugPrint('Nunchuk Roll right: ' + Nunchuk.SmoothRoll)
+   var.NunchukRollRight = true
+} else {
+   var.NunchukRollRight = false
+}
+*/
+
+/* Walk Sprint Zone */
+var.JoystickDeviation = sqrt(sqr(Nunchuk.JoyX) + sqr(Nunchuk.JoyY))
+if (var.JoystickDeviation > var.WalkSprintZone) {
+    var.Moving = true
+    var.Sprint = true
+    var.Walk = false
+} else if (var.JoystickDeviation > var.JoystickDeadzone){
+    var.Moving = true
+    var.Sprint = false
+    var.Walk = true
+} else {
+    var.Moving = false
+    var.Sprint = false
+    var.Walk = false
+}
+
+if ((var.Moving = true) and (abs(Nunchuk.JoyX) > (var.DiagnlPercentage*abs(Nunchuk.JoyY))) and (Nunchuk.JoyX > var.Deadzone)) {
+   var.Rt = true
+} else {
+   var.Rt = false
+}
+if ((var.Moving = true) and (abs(Nunchuk.JoyX) > (var.DiagnlPercentage*abs(Nunchuk.JoyY))) and (Nunchuk.JoyX < -var.Deadzone)) {
+   var.Lt = true
+} else {
+   var.Lt = false
+}
+if ((var.Moving = true) and (abs(Nunchuk.JoyY) > (var.DiagnlPercentage*abs(Nunchuk.JoyX))) and (Nunchuk.JoyY > var.Deadzone)) {
+   var.Bkwd = true
+} else {
+   var.Bkwd = false
+}
+if ((var.Moving = true) and (abs(Nunchuk.JoyY) > (var.DiagnlPercentage*abs(Nunchuk.JoyX))) and (Nunchuk.JoyY < -var.Deadzone)) {
+   var.Fwd = true
+} else {
+   var.Fwd = false
+}
+
+/* Dark Souls PTDE diagonal roll fix*/
+if ((var.Lt = true or var.Rt = true) and (Pressed(var.WiimoteA))) {
+   var.Fwd = false
+   var.Bkwd = false
+}
+
+/*
+// Cycle through weapons 1,2,3,4 with left and right Wiimote (WIP):
+
+Keyboard.One = var.WeaponOne
+Keyboard.Two = var.WeaponTwo
+Keyboard.Three = var.WeaponThree
+Keyboard.Four = var.WeaponFour
+
+var.CycleThrough = Pressed(Wiimote.Left) or Pressed(Wiimote.Right)
+if (var.CycleThrough = true) {
+   var.WeaponCycleState = var.WeaponCycleState + int(Wiimote.Right) - int(Wiimote.Left)
+   if (var.WeaponCycleState < 1) {
+       var.WeaponCycleState = 4
+   }
+   if (var.WeaponCycleState > 4) {
+       var.WeaponCycleState = 1
+   }
+   var.CycleThrough = false
+}
+
+if (var.WeaponCycleState = 3) {
+   var.WeaponTwo = Wiimote.Left
+   var.WeaponFour = Wiimote.Right
+} else if (var.WeaponCycleState = 4) {
+   var.WeaponThree = Wiimote.Left
+   var.WeaponOne = Wiimote.Right
+} else if (var.WeaponCycleState = 1) {
+   var.WeaponFour = Wiimote.Left
+   var.WeaponTwo = Wiimote.Right
+} else {
+   var.WeaponOne = Wiimote.Left
+   var.WeaponThree = Wiimote.Right
+}
+*/
+

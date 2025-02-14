@@ -1,0 +1,69 @@
+﻿/*
+1. Connect a Wii-Mote to your PC through Bluetooth.
+
+2. Download and run GlovePie (http://glovepie.org/GlovePIEWithoutEmotiv043.zip).
+
+3. Copy and paste the script in GlovePie.
+
+4. Turn on your Wii (for the sensor bar) or use a wireless sensor bar.
+
+5. Press 'Run' in GlovePie, should work now.
+
+Controls
+Left Mouse Button = A
+Right Mouse Button = B
+WASD = Nunchuk Analog Stick
+Space = Nunchuk Z-button
+Ctrl = Nunchuk C-button
+Tab = Wii-Mote D-Pad Down
+Weapon/Tool 1 = Wii-Mote D-Pad Left
+Weapon/Tool 2 = Wii-Mote D-Pad Right
+Weapon/Tool 3 = Wii-Mote D-Pad Up
+Shift = Wii-Mote D-Pad=Two
+Escape = Wii-Mote Home
+Zooming = Wii-Mote +/-
+
+*/
+
+// Requires a sensor bar
+Wiimote.Led1 = true
+
+// Mouse movement
+if wiimote.PointerVisible but not var.PointerBump then
+mouse.x = wiimote.PointerX
+mouse.y = wiimote.PointerY
+end if
+
+// Mouse Buttons
+mouse.LeftButton = Wiimote.A and KeepDown(Wiimote.PointerVisible,0.5s)
+mouse.RightButton = Wiimote.B and KeepDown(Wiimote.PointerVisible,0.5s)
+mouse.MiddleButton = Wiimote.One and KeepDown(Wiimote.PointerVisible,0.5s)
+
+
+// Mouse Wheel
+if wiimote.Plus then
+mouse.WheelUp = true
+wait 30ms
+mouse.WheelUp = false
+wait 30ms
+end if
+if wiimote.Minus then
+mouse.WheelDown = true
+wait 30ms
+mouse.WheelDown = false
+wait 30ms
+end if
+
+// Keyboard
+key.W = Wiimote.Nunchuk.JoyY < -0.4
+key.S = Wiimote.Nunchuk.JoyY > 0.4
+key.A = Wiimote.Nunchuk.JoyX < -0.4
+key.D = Wiimote.Nunchuk.JoyX > 0.4
+key.Space = wiimote.Nunchuk.Z
+key.LeftControl = wiimote.Nunchuk.C
+key.Tab = wiimote.Down
+key.1 = wiimote.Left
+key.2 = wiimote.Right
+key.3 = wiimote.Up
+key.LeftShift = wiimote.Two
+key.Escape = wiimote.Home
