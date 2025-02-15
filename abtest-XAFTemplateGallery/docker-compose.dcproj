@@ -4,7 +4,7 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerPublishLocally>False</DockerPublishLocally>
-    <ProjectGuid>6ac2551a-44cf-4ed1-8020-a78072c64fd0</ProjectGuid>
+    <ProjectGuid>9f12c629-39f6-4cd7-b9ae-82dcfa147e86</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}</DockerServiceUrl>
     <DockerServiceName>abtest_xaftemplategallery.blazor.server</DockerServiceName>
