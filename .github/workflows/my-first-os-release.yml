@@ -28,7 +28,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: vhs
+          name: iso
           path: ${{ github.workspace }}/my-first-os/bootloader.iso
           retention-days: 1
           compression-level: 9
