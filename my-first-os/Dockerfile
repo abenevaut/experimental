@@ -1,7 +1,10 @@
 #
 # docker build -t compil-os .
 # docker run -it --rm -v .:/vol  compil-os /bin/sh
-# cp bootloader.iso /vol
+# docker run -it --rm -v .:/vol  compil-os cp bootloader.iso /vol
+# drutil burn bootloader.iso
+#
+# docker run -it --rm -v ./bootloader.iso:/boot.iso qemux/qemu-docker
 #
 FROM debian:latest AS builder
 RUN apt-get update && apt-get install -y nasm xorriso
