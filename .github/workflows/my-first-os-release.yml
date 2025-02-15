@@ -24,7 +24,7 @@ jobs:
       - name: Build ISO
         run: |
           docker build -t compil-os .
-          docker run -it --rm -v .:/vol  compil-os cp bootloader.iso /vol
+          docker run --rm -v .:/vol  compil-os cp bootloader.iso /vol
 
       - uses: actions/upload-artifact@v4
         with:

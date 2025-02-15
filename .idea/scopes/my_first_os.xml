@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="my-first-os" pattern="file[experimental]:my-first-os//*||file:.github/workflows/my-first-os-release.yml" />
+</component>
