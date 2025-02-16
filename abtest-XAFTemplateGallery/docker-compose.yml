@@ -1,16 +1,37 @@
+networks:
+  mynetwork:
+
 services:
   abtest_xaftemplategallery.blazor.server:
     image: ${DOCKER_REGISTRY-}abtestxaftemplategalleryblazorserver
+    container_name: app
     build:
       context: .
       dockerfile: abtest_XAFTemplateGallery.Blazor.Server/Dockerfile
     depends_on:
-      - db
+      - mssql
+    networks:
+      - mynetwork
 
-  db:
+  azuresql:
     image: mcr.microsoft.com/azure-sql-edge
+    container_name: azuresql
     environment:
       MSSQL_SA_PASSWORD: yourStrong(!)Password
       ACCEPT_EULA: 1
     ports:
       - 1434:1433
+
+  #
+  # https://learn.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver16&tabs=cli&pivots=cs1-bash
+  #
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    environment:
+      MSSQL_SA_PASSWORD: yourStrong(!)Password
+      ACCEPT_EULA: "Y"
+    ports:
+      - 1435:1433
+    networks:
+      - mynetwork
