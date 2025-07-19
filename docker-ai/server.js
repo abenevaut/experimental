@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// const MODEL_URL = 'http://mistral-nemo:12434/engines/v1';
+// const MODEL_URL = 'http://localhost:12434/engines/v1';
 const MODEL_URL = 'http://model-runner.docker.internal/engines/v1';
 // const MODEL_NAME = 'ai/smollm2:360M-Q4_K_M';
 // const MODEL_NAME = 'ai/mistral:latest';

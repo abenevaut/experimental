@@ -6,17 +6,17 @@ models:
 
 services:
 
-  mcp-gateway:
-    image: docker/mcp-gateway
-    command:
-      - --secrets=/app/env
-      - --tools=brave_web_search
-      - --tools=get_article
-      - --tools=get_summary
-      - --tools=get_related_topics
-      - --tools=send-email
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+#  mcp-gateway:
+#    image: docker/mcp-gateway
+#    command:
+#      - --secrets=/app/env
+#      - --tools=brave_web_search
+#      - --tools=get_article
+#      - --tools=get_summary
+#      - --tools=get_related_topics
+#      - --tools=send-email
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
 
   chat-backend:
     build: .
