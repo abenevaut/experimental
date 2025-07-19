@@ -1,0 +1,34 @@
+POST http://localhost:3001/chat
+Content-Type: application/json
+
+{
+  "message": "Ecrit un article debutant sur ce qu'est un middleware en Node.js"
+}
+
+###
+
+POST http://localhost:3001/chat
+Content-Type: application/json
+
+{
+  "message": "decrit le film h2g2, le guide du voyageur galactique"
+}
+
+###
+
+POST http://localhost:3001/chat
+Content-Type: application/json
+
+{
+  "message": "combien font 2+2 ?"
+}
+
+###
+
+POST http://localhost:3001/chat
+Content-Type: application/json
+
+{
+  "message": "combien est-je de repository sur github ?"
+}
+

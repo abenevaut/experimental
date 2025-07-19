@@ -1,0 +1,29 @@
+version: '3.8'
+
+models:
+  mistral-nemo:
+    model: ai/mistral-nemo:latest
+
+services:
+
+  mcp-gateway:
+    image: docker/mcp-gateway
+    command:
+      - --secrets=/app/env
+      - --tools=brave_web_search
+      - --tools=get_article
+      - --tools=get_summary
+      - --tools=get_related_topics
+      - --tools=send-email
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  chat-backend:
+    build: .
+    ports:
+      - "3001:3001"
+    models:
+      mistral-nemo:
+        endpoint_var: MODEL_BASE_URL
+    depends_on:
+      - mcp-gateway
