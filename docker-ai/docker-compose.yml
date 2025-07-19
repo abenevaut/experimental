@@ -1,5 +1,3 @@
-version: '3.8'
-
 models:
   mistral-nemo:
     model: ai/mistral-nemo:latest
@@ -25,5 +23,5 @@ services:
     models:
       mistral-nemo:
         endpoint_var: MODEL_BASE_URL
-    depends_on:
-      - mcp-gateway
+#    depends_on:
+#      - mcp-gateway
