@@ -33,6 +33,10 @@ docker desktop enable model-runner --tcp=12434
 
 Adjust `const MODEL_NAME` & `const MODEL_URL` in server.js, then:
 ```
+npm run server
+```
+OR
+```
 docker-compose build --no-cache
 docker-compose up -d
 ```
