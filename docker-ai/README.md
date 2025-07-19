@@ -1,10 +1,5 @@
 # Docker AI
 
-## Resources
-
-- https://www.docker.com/blog/run-llms-locally/
-- https://www.youtube.com/watch?v=rGGZJT3ZCvo
-
 ## Setup
 
 ```
@@ -44,6 +39,11 @@ docker-compose up -d
 
 ## Todo
 - use MCP in chat https://hub.docker.com/r/docker/mcp-gateway
+
+## Resources
+
+- https://www.docker.com/blog/run-llms-locally/
+- https://www.youtube.com/watch?v=rGGZJT3ZCvo
 
 ## Next ?
 - https://www.docker.com/blog/llm-docker-for-local-and-hugging-face-hosting/
