@@ -1,0 +1,20 @@
+FROM ghcr.io/abenevaut/vapor-nginx:php83
+
+RUN apk --update add \
+        nodejs \
+        npm \
+# Remove alpine cache
+    && rm -rf /var/cache/apk/*
+
+# Add configuration files
+COPY --chown=nobody rootfs/ /
+RUN chmod +x /etc/service/*/run
+
+ENV COMPOSER_HOME=/composer \
+    PATH=/composer/vendor/bin:$PATH
+
+ARG COMPOSER_HASH
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && php -r "if (hash_file('sha384', 'composer-setup.php') === '${COMPOSER_HASH}') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php -r "unlink('composer-setup.php');"
