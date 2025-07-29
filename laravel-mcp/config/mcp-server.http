@@ -1,3 +1,16 @@
+# curl -X POST https://your-server.com/mcp
+#  -H "Content-Type: application/json"
+#  -d '{"jsonrpc":"2.0","id":1,"method":"initialize"}'
+POST http://localhost:8080/mcp
+Content-Type: application/json
+
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "initialize"
+}
+
+###
 
 # curl -X POST https://your-server.com/mcp
 #  -H "Content-Type: application/json"
