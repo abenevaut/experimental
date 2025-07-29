@@ -1,0 +1,69 @@
+# curl -X POST https://your-server.com/mcp
+#  -H "Content-Type: application/json"
+#  -d '{"jsonrpc":"2.0","id":1,"method":"initialize"}'
+POST http://localhost:8080/mcp
+Content-Type: application/json
+
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "initialize"
+}
+
+###
+
+# curl -X POST https://your-server.com/mcp
+#  -H "Content-Type: application/json"
+#  -d '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+POST http://localhost:8080/mcp
+Content-Type: application/json
+
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/list"
+}
+
+###
+
+# curl -X POST https://your-server.com/mcp
+#  -H "Content-Type: application/json"
+#  -d '{"jsonrpc":"2.0","id":1,"method":"prompts/list"}'
+POST http://localhost:8080/mcp
+Content-Type: application/json
+
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "prompts/list"
+}
+
+###
+
+# curl -X POST https://your-server.com/mcp
+#  -H "Content-Type: application/json"
+#  -d '{"jsonrpc":"2.0","id":1,"method":"resources/list"}'
+POST http://localhost:8080/mcp
+Content-Type: application/json
+
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "resources/list"
+}
+
+###
+
+# curl -X POST https://your-server.com/mcp
+#  -H "Content-Type: application/json"
+#  -d '{"jsonrpc":"2.0","id":1,"method":"resources/templates/list"}'
+POST http://localhost:8080/mcp
+Content-Type: application/json
+
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "resources/templates/list"
+}
+
+###
