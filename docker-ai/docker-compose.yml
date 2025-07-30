@@ -1,27 +1,23 @@
 models:
-  mistral-nemo:
-    model: ai/mistral-nemo:latest
+  qwen3:
+    model: ai/qwen3:0.6B-Q4_0
 
 services:
 
-#  mcp-gateway:
-#    image: docker/mcp-gateway
-#    command:
-#      - --secrets=/app/env
-#      - --tools=brave_web_search
-#      - --tools=get_article
-#      - --tools=get_summary
-#      - --tools=get_related_topics
-#      - --tools=send-email
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
+  mcp-gateway:
+    image: docker/mcp-gateway
+    command:
+      - --servers=github
+      - --tools=search_repositories
+    volumes:
+      - //var/run/docker.sock:/var/run/docker.sock
 
   chat-backend:
     build: .
     ports:
       - "3001:3001"
     models:
-      mistral-nemo:
+      qwen3:
         endpoint_var: MODEL_BASE_URL
-#    depends_on:
-#      - mcp-gateway
+    depends_on:
+      - mcp-gateway
