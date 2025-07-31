@@ -4,20 +4,36 @@ models:
 
 services:
 
+  #
+  # https://github.com/docker/mcp-gateway/blob/main/examples/container/README.md
+  # https://github.com/docker/mcp-gateway/blob/main/examples/interceptors/compose.yaml
+  #
   mcp-gateway:
     image: docker/mcp-gateway
     command:
+      - --transport=streaming
       - --servers=github
       - --tools=search_repositories
+      - --verbose=true
+      - --port=9011
     volumes:
       - //var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: wget -O- http://localhost:9011/health
+      interval: 1s
+      timeout: 2s
+      retries: 60
+      start_period: 2s
 
   chat-backend:
     build: .
+    environment:
+      - MCP_HOST=http://mcp-gateway:9011/mcp
     ports:
       - "3001:3001"
     models:
       qwen3:
         endpoint_var: MODEL_BASE_URL
     depends_on:
-      - mcp-gateway
+      mcp-gateway:
+        condition: service_healthy

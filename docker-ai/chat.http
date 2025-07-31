@@ -31,12 +31,3 @@ Content-Type: application/json
 {
   "message": "Combien ai je de repository sur github ?"
 }
-
-###
-
-POST http://localhost:3001/chat
-Content-Type: application/json
-
-{
-  "message": "Quel est ton role definit par le prompt ?"
-}
