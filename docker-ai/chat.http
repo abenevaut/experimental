@@ -1,3 +1,14 @@
+POST http://localhost:9011/engines/v1
+Content-Type: application/json
+
+{
+  "jsonrpc":"2.0",
+  "id":1,
+  "method":"initialize"
+}
+
+###
+
 POST http://localhost:3001/chat
 Content-Type: application/json
 
@@ -29,7 +40,7 @@ POST http://localhost:3001/chat
 Content-Type: application/json
 
 {
-  "message": "Combien ai je de repository sur github ?"
+  "message": "Combien ai je de repository sur github.com pour l'utilisateur abenevaut ?"
 }
 
 ###
@@ -38,5 +49,5 @@ POST http://localhost:3001/chat
 Content-Type: application/json
 
 {
-  "message": "Quel est ton role definit par le prompt ?"
+  "message": "Combien ai je de repository sur github.com pour l'utilisateur abenevaut ? utilise search_repositories"
 }
