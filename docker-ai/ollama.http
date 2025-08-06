@@ -1,0 +1,15 @@
+GET http://localhost:11435/api/tags
+Content-Type: application/json
+
+###
+
+POST http://localhost:11435/api/generate
+Content-Type: application/json
+
+{
+  "model": "qwen3:0.6b",
+  "prompt": "Explain how to use Docker in 3 steps",
+  "stream": false
+}
+
+###

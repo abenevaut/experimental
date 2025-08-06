@@ -21,3 +21,38 @@ services:
         endpoint_var: MODEL_BASE_URL
     depends_on:
       - mcp-gateway
+
+  #
+  # docker exec -it ollama ollama pull phi3:mini-4k
+  #
+  # https://ollama.com/library/qwen3
+  # docker exec -it ollama ollama pull qwen3:0.6b
+  #
+  ollama:
+    container_name: ollama
+    image: ollama/ollama
+    pull_policy: always
+    healthcheck:
+      test: ollama ps || exit 1
+      interval: 10s
+    ports:
+      - "11435:11434"
+    # Persistent storage for models and configuration
+    #    volumes:
+    #      - ./ollama:/root/.ollama
+    environment:
+      - OLLAMA_NUM_PARALLEL=4
+      - OLLAMA_MAX_LOADED_MODELS=2
+      - OLLAMA_HOST=0.0.0.0
+      # Keep models loaded in memory for 5 minutes after last use
+      - OLLAMA_KEEP_ALIVE=5m
+      # Flash attention (0=disabled, 1=enabled but experimental)
+      - OLLAMA_FLASH_ATTENTION=0
+    # GPU Configuration (uncomment for GPU acceleration)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
