@@ -1,0 +1,18 @@
+{
+    "mcpServers": {
+        "laravel-boost": {
+            "command": "docker",
+            "args": [
+                "run",
+                "--rm",
+                "-v $(pwd):/var/task",
+                "-v ${USERPROFILE:-~}/.npmrc:/root/.npmrc",
+                "-v ${USERPROFILE:-~}/.composer:/root/.composer",
+                "ghcr.io/abenevaut/vapor-default:php83",
+                "php",
+                "/var/task/artisan",
+                "boost:mcp"
+            ]
+        }
+    }
+}
