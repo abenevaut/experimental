@@ -1,6 +1,7 @@
 #
 # docker build . -f Dockerfile.dev -t laravel-boost --build-arg COMPOSER_HASH=dac665fdc30fdd8ec78b38b9800061b4150413ff2e3b6f88543c636f7cd84f6db9189d43a81e5503cda447da73c7e5b6
-# docker run --rm -v ${USERPROFILE:-~}/.npmrc:/root/.npmrc -v ${USERPROFILE:-~}/.composer:/root/.composer -v .:/var/task -p 8080:8080 -p 5173:5173 laravel-boost
+# docker run --name=lboost -v ${USERPROFILE:-~}/.npmrc:/root/.npmrc -v ${USERPROFILE:-~}/.composer:/root/.composer -v .:/var/task -p 8080:8080 -p 5173:5173 laravel-boost
+# docker exec -i lboost php artisan boost:mcp
 #
 FROM ghcr.io/abenevaut/vapor-nginx:php83
 
