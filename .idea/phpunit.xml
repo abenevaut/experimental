@@ -12,10 +12,10 @@
         <option value="$PROJECT_DIR$/aws-sqs/tests/Feature" />
         <option value="$PROJECT_DIR$/demo-laravel-sqlmap/tests/Unit" />
         <option value="$PROJECT_DIR$/demo-laravel-sqlmap/tests/Feature" />
-        <option value="$PROJECT_DIR$/laravel-paypal/tests" />
-        <option value="$PROJECT_DIR$/demo-laravel-stripe/tests" />
         <option value="$PROJECT_DIR$/laravel-ohdear/tests" />
         <option value="$PROJECT_DIR$/laravel-stripe/tests" />
+        <option value="$PROJECT_DIR$/laravel-paypal/tests" />
+        <option value="$PROJECT_DIR$/demo-laravel-stripe/tests" />
       </list>
     </option>
   </component>
