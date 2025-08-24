@@ -1,0 +1,18 @@
+services:
+
+    ollama:
+        image: ghcr.io/abenevaut/ollama-qwen3:qwen3-0.6b
+
+    laravel:
+        image: laravel-prism
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "8080:8080"
+        volumes:
+            - ${USERPROFILE:-~}/.npmrc:/root/.npmrc
+            - ${USERPROFILE:-~}/.composer:/root/.composer
+            - .:/var/task
+        depends_on:
+            -   ollama

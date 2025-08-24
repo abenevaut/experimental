@@ -1,0 +1,57 @@
+base_model: /models/starcoder2-7b
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+
+load_in_8bit: false
+load_in_4bit: true
+strict: false
+
+datasets:
+  - path: /data/dataset_php_c.jsonl
+    type: completion
+
+dataset_prepared_path: /training_runs/php_c_prepared
+
+output_dir: /checkpoints/starcoder2-7b-php
+
+adapter:
+  type: lora
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+  target_modules:
+    - c_proj
+    - q_proj
+    - v_proj
+    - k_proj
+
+sequence_len: 2048
+sample_packing: true
+pad_to_sequence_len: true
+
+train_on_inputs: false
+group_by_length: false
+
+# wandb_project: starcoder2-7b-php
+# wandb_entity: ton_user_wandb
+
+num_epochs: 3
+micro_batch_size: 2
+gradient_accumulation_steps: 8
+eval_batch_size: 2
+evals_per_epoch: 1
+
+learning_rate: 2e-4
+lr_scheduler: cosine
+optimizer: adamw_torch
+weight_decay: 0.01
+warmup_steps: 10
+
+save_safetensors: true
+save_total_limit: 2
+
+bf16: false
+fp16: true
+
+gradient_checkpointing: true
+logging_steps: 10
