@@ -35,6 +35,40 @@
 5. Multiple Queries - queries=["authentication", "middleware"] - ANY of these terms
 
 
+=== inertia-laravel/core rules ===
+
+## Inertia Core
+
+- Inertia.js components should be placed in the `resources/js/Pages` directory unless specified differently in the JS bundler (vite.config.js).
+- Use `Inertia::render()` for server-side routing instead of traditional Blade views.
+
+<code-snippet lang="php" name="Inertia::render Example">
+// routes/web.php example
+Route::get('/users', function () {
+    return Inertia::render('Users/Index', [
+        'users' => User::all()
+    ]);
+});
+</code-snippet>
+
+
+=== inertia-laravel/v2 rules ===
+
+## Inertia v2
+
+- Make use of all Inertia features from v1 & v2. Check the documentation before making any changes to ensure we are taking the correct approach.
+
+### Inertia v2 New Features
+- Polling
+- Prefetching
+- Deferred props
+- Infinite scrolling using merging props and `WhenVisible`
+- Lazy loading data on scroll
+
+### Deferred Props & Empty States
+- When using deferred props on the frontend, you should add a nice empty state with pulsing / animated skeleton.
+
+
 === laravel/core rules ===
 
 ## Do Things the Laravel Way
@@ -109,6 +143,56 @@
 
 - You must run `vendor/bin/pint --dirty` before finalizing changes to ensure your code matches the project's expected style.
 - Do not run `vendor/bin/pint --test`, simply run `vendor/bin/pint` to fix any formatting issues.
+
+
+=== inertia-vue/core rules ===
+
+## Inertia + Vue
+
+- Vue components must have a single root element.
+- Use `router.visit()` or `<Link>` for navigation instead of traditional links.
+
+<code-snippet lang="vue" name="Inertia Client Navigation">
+    import { Link } from '@inertiajs/vue3'
+
+    <Link href="/">Home</Link>
+</code-snippet>
+
+- For form handling, use `router.post` and related methods. Do not use regular forms.
+
+
+<code-snippet lang="vue" name="Inertia Vue Form Example">
+    <script setup>
+    import { reactive } from 'vue'
+    import { router } from '@inertiajs/vue3'
+    import { usePage } from '@inertiajs/vue3'
+
+    const page = usePage()
+
+    const form = reactive({
+      first_name: null,
+      last_name: null,
+      email: null,
+    })
+
+    function submit() {
+      router.post('/users', form)
+    }
+    </script>
+
+    <template>
+        <h1>Create {{ page.modelName }}</h1>
+        <form @submit.prevent="submit">
+            <label for="first_name">First name:</label>
+            <input id="first_name" v-model="form.first_name" />
+            <label for="last_name">Last name:</label>
+            <input id="last_name" v-model="form.last_name" />
+            <label for="email">Email:</label>
+            <input id="email" v-model="form.email" />
+            <button type="submit">Submit</button>
+        </form>
+    </template>
+</code-snippet>
 
 
 === tailwindcss/core rules ===
