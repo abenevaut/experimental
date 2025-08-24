@@ -1,0 +1,35 @@
+name: my-first-os-release
+
+on:
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: ./my-first-os
+
+jobs:
+
+  release:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: my-first-os-release-${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: false
+    steps:
+
+      - name: Checkout project
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Build ISO
+        run: |
+          docker build -t compil-os .
+          docker run --rm -v .:/vol  compil-os cp bootloader.iso /vol
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: iso
+          path: ${{ github.workspace }}/my-first-os/bootloader.iso
+          retention-days: 1
+          compression-level: 9
+          overwrite: true
