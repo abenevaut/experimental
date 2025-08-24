@@ -1,27 +1,112 @@
 models:
-  mistral-nemo:
-    model: ai/mistral-nemo:latest
+  qwen3:
+    model: ai/qwen3:0.6B-Q4_0
 
 services:
 
-#  mcp-gateway:
-#    image: docker/mcp-gateway
-#    command:
-#      - --secrets=/app/env
-#      - --tools=brave_web_search
-#      - --tools=get_article
-#      - --tools=get_summary
-#      - --tools=get_related_topics
-#      - --tools=send-email
-#    volumes:
-#      - /var/run/docker.sock:/var/run/docker.sock
+  #
+  # https://github.com/docker/mcp-gateway/blob/main/examples/container/README.md
+  # https://github.com/docker/mcp-gateway/blob/main/examples/interceptors/compose.yaml
+  #
+  mcp-gateway:
+    image: docker/mcp-gateway
+    command:
+      - --transport=streaming
+      - --servers=curl
+      - --servers=github
+      - --verbose=true
+      - --port=9011
+    ports:
+      - 9011:9011
+    volumes:
+      - //var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: wget -O- http://localhost:9011/health
+      interval: 1s
+      timeout: 2s
+      retries: 60
+      start_period: 2s
 
   chat-backend:
     build: .
+    environment:
+      - MCP_HOST=http://mcp-gateway:9011/mcp
     ports:
       - "3001:3001"
     models:
-      mistral-nemo:
+      qwen3:
         endpoint_var: MODEL_BASE_URL
-#    depends_on:
-#      - mcp-gateway
+    depends_on:
+      mcp-gateway:
+        condition: service_healthy
+
+  #
+  # docker exec -it ollama ollama pull phi3:mini-4k
+  #
+  # https://ollama.com/library/qwen3
+  # docker exec -it ollama ollama pull qwen3:0.6b
+  #
+  ollama:
+    container_name: ollama
+    image: ollama/ollama
+    pull_policy: always
+    healthcheck:
+      test: ollama ps || exit 1
+      interval: 10s
+    ports:
+      - "11435:11434"
+    # Persistent storage for models and configuration
+    #    volumes:
+    #      - ./ollama:/root/.ollama
+    environment:
+      - OLLAMA_NUM_PARALLEL=4
+      - OLLAMA_MAX_LOADED_MODELS=2
+      - OLLAMA_HOST=0.0.0.0
+      # Keep models loaded in memory for 5 minutes after last use
+      - OLLAMA_KEEP_ALIVE=5m
+      # Flash attention (0=disabled, 1=enabled but experimental)
+      - OLLAMA_FLASH_ATTENTION=0
+    # GPU Configuration (uncomment for GPU acceleration)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+  ollama-ui:
+    image: ghcr.io/open-webui/open-webui:main
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    ports:
+      - 3000:8080
+#    volumes:
+#      - ollama_ui_data:/app/backend/data
+
+  anythingllm:
+    image: mintplexlabs/anythingllm
+    ports:
+      - "3001:3001"
+    cap_add:
+      - SYS_ADMIN
+    environment:
+      # Adjust for your environment
+      - STORAGE_DIR=/app/server/storage
+      - JWT_SECRET="okjwdinjqwfiunevweoiu3209jv2w0@(*n39in#"
+      - LLM_PROVIDER=ollama
+      - OLLAMA_BASE_PATH=http://ollama:11434
+      - OLLAMA_MODEL_PREF=llama2
+      - OLLAMA_MODEL_TOKEN_LIMIT=4096
+      - EMBEDDING_ENGINE=ollama
+      - EMBEDDING_BASE_PATH=http://ollama:11434
+      - EMBEDDING_MODEL_PREF=qwen3:0.6b
+      - EMBEDDING_MODEL_MAX_CHUNK_LENGTH=8192
+      - VECTOR_DB=lancedb
+      - WHISPER_PROVIDER=local
+      - TTS_PROVIDER=native
+      - PASSWORDMINCHAR=8
+      # Add any other keys here for services or settings
+      # you can find in the docker/.env.example file
+#    volumes:
+#      - anythingllm_storage:/app/server/storage

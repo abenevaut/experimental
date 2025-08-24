@@ -1,0 +1,12 @@
+POST http://localhost:12434/engines/v1/chat/completions
+Content-Type: application/json
+
+{
+  "model": "ai/qwen3:0.6B-Q4_0",
+  "messages": [
+    { "role": "user", "content": "Explain how to use Docker in 3 steps" }
+  ],
+  "stream": false
+}
+
+###
