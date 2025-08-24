@@ -14,16 +14,28 @@
       <sourceFolder url="file://$MODULE_DIR$/laravel-ohdear/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-ohdear/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/src" isTestSource="false" packagePrefix="abenevaut\Paypal\" />
-      <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/spec" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/demo-laravel-stripe/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/demo-laravel-stripe/tests/Unit" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/laravel-roadrunner/app" isTestSource="false" packagePrefix="App\" />
-      <sourceFolder url="file://$MODULE_DIR$/laravel-roadrunner/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
-      <sourceFolder url="file://$MODULE_DIR$/laravel-roadrunner/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
-      <sourceFolder url="file://$MODULE_DIR$/laravel-roadrunner/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-roadrunner/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-roadrunner/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/aws-sqs/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/aws-sqs/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/aws-sqs/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/aws-sqs/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/aws-sqs/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/aws-sqs/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-roadrunner/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-roadrunner/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-roadrunner/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-roadrunner/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-roadrunner/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-roadrunner/tests/Unit" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-sqlmap/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-sqlmap/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-sqlmap/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-sqlmap/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-sqlmap/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/demo-laravel-sqlmap/tests/Unit" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-paypal/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/laravel-stripe/src" isTestSource="false" packagePrefix="abenevaut\Stripe\" />
